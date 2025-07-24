@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Bronlar Paneli</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg: linear-gradient(to right, #d7e1ec, #f0f4f7);
+            --card-bg: #ffffff;
+            --primary: #4CAF50;
+            --danger: #e53935;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg);
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .date-count {
+            background: #ecf0f1;
+            padding: 12px 20px;
+            border-left: 6px solid var(--primary);
+            border-radius: 8px;
+            margin: 30px 0 10px;
+            font-weight: 600;
+            font-size: 18px;
+            color: #2c3e50;
+            box-shadow: 0 2px 6px var(--shadow);
+        }
+
+        .booking {
+            background: var(--card-bg);
+            padding: 20px;
+            margin-bottom: 16px;
+            border-left: 5px solid var(--primary);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .booking.cancelled {
+            border-left-color: var(--danger);
+            background: #fdf0f0;
+        }
+
+        .booking:hover {
+            transform: scale(1.01);
+        }
+
+        .booking h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            color: #34495e;
+        }
+
+        .booking p {
+            margin: 5px 0;
+            color: #555;
+            font-size: 15px;
+        }
+
+        .reason {
+            color: var(--danger);
+            font-weight: bold;
+        }
+
+        @media (max-width: 480px) {
+            .booking h3 {
+                font-size: 18px;
+            }
+
+            .booking p, .date-count {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📋 Bronlar Paneli</h1>
+{% for group in bookings_by_date %}
+    <div class="date-count">
+        🗓 Sana: {{ group.date }} — {{ group.count }} ta bron
+    </div>
+
+    {% for booking in bookings %}
+        {% if booking.date == group.date %}
+            <div class="booking {% if booking.is_cancelled %}cancelled{% endif %}">
+                <h3>{{ booking.name }} — {{ booking.phone }}</h3>
+                <p>⏰ Vaqt: {{ booking.time }}</p>
+                <p>📅 Sana: {{ booking.date }}</p>
+                {% if booking.is_cancelled %}
+                    <p class="reason">❌ Bekor qilingan{% if booking.cancel_reason %} — Sabab: {{ booking.cancel_reason }}{% endif %}</p>
+                {% else %}
+                    <p style="color: var(--primary); font-weight: bold;">✅ Faol bron</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+
+</body>
+</html> 
+
+
+
+

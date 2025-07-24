@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blade Barbershop | Narxlar</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #faf8f5;
+            --gold: #d4af37;
+            --black: #0d0d0d;
+            --text: #333;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--main-color);
+            color: var(--text);
+        }
+
+        /* ==== NAVBAR ==== */
+        .main-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 12px 20px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .navbar-brand {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 26px;
+            cursor: pointer;
+            color: var(--black);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--black);
+            text-decoration: none;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px 0;
+                border-bottom: 1px solid #eee;
+            }
+        }
+
+        /* ==== HEADER ==== */
+        header {
+            text-align: center;
+            padding: 60px 20px 30px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: var(--black);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        /* ==== PRICE SECTION ==== */
+        .price-section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        .price-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 50px;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .price-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px 24px;
+            box-shadow: 0 8px 24px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .price-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            color: var(--black);
+        }
+
+        .price-card p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .price-amount {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background: var(--black);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #f4f4f4;
+            font-size: 14px;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .price-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- === NAVBAR === -->
+    <nav class="main-navbar">
+        <a href="{% url 'home' %}" class="navbar-brand">Blade</a>
+        <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+        <div class="nav-links" id="navLinks">
+            <a href="{% url 'home' %}">Asosiy</a>
+            <a href="{% url 'booking' %}">Bron</a>
+
+        </div>
+    </nav>
+
+    <!-- === HEADER === -->
+    <header>
+        <h1>Narxlar</h1>
+        <p>Bizda har bir xizmat o‘ziga yarasha sifat va narxda!</p>
+    </header>
+
+    <!-- === PRICES === -->
+    <section class="price-section">
+        <h2 class="price-title">Xizmatlar va narxlar</h2>
+        <div class="price-grid">
+            <div class="price-card">
+                <h3>Fade Qirqim</h3>
+                <p>Eng zamonaviy qirqim bilan yangilanish</p>
+                <div class="price-amount">50 000 so‘m</div>
+                <a href="{% url 'booking' %}" class="btn">Bron qilish</a>
+            </div>
+            <div class="price-card">
+                <h3>Soqol Parvarishi</h3>
+                <p>Toza, stilga mos va chiroyli</p>
+                <div class="price-amount">30 000 so‘m</div>
+                <a href="{% url 'booking' %}" class="btn">Bron qilish</a>
+            </div>
+            <div class="price-card">
+                <h3>To‘liq Paket</h3>
+                <p>Soch + soqol + yuzni tozalash</p>
+                <div class="price-amount">80 000 so‘m</div>
+                <a href="{% url 'booking' %}" class="btn">Bron qilish</a>
+            </div>
+            <div class="price-card">
+                <h3>Bola Qirqimi</h3>
+                <p>7 yoshgacha bo‘lgan bolalar uchun</p>
+                <div class="price-amount">40 000 so‘m</div>
+                <a href="{% url 'booking' %}" class="btn">Bron qilish</a>
+            </div>
+            <div class="price-card">
+                <h3>Yuz Terisi Maskasi</h3>
+                <p>Tozalovchi va namlovchi niqob</p>
+                <div class="price-amount">25 000 so‘m</div>
+                <a href="{% url 'booking' %}" class="btn">Bron qilish</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- === FOOTER === -->
+    <footer>
+        &copy; 2025 Blade Barbershop. Professional xizmat. Mukammal natija.
+    </footer>
+
+    <!-- JS for menu toggle -->
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('show');
+        }
+    </script>
+</body>
+
+</html>

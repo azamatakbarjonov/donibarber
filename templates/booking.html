@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sartaroshxonaga Bron Qilish</title>
+
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+
+            /* Orqa fon rasm */
+            background-image: url('https://cdn.vectorstock.com/i/500p/97/22/dark-abstract-background-with-black-overlap-vector-30039722.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 420px;   
+            width: 92%;
+            margin: 40px auto;
+            padding: 20px 16px;
+            border-radius: 16px;
+
+            /* Glass effekt */
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 20px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #00796b;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #FFD700; /* Gold rang */
+            color: black;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e6c200;
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>💈 Sartaroshxonaga bron qiling</h2>
+        <form method="post">
+            {% csrf_token %}
+
+            <label for="id_name">Ismingiz</label>
+            {{ form.name }}
+
+            <label for="id_phone">Telefon raqamingiz</label>
+            {{ form.phone }}
+
+            <label for="id_date">Sana</label>
+            {{ form.date }}
+
+            <label for="id_time">Vaqt</label>
+            {{ form.time }}
+
+            <label for="id_people">👥 Odam soni</label>
+            {{ form.people }}
+
+            {% if form.non_field_errors %}
+                <div class="error-message">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <button type="submit">✅ Bron qilish</button>
+        </form>
+    </div>
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("input[name='date']", {
+            minDate: "today",
+            dateFormat: "Y-m-d",
+            disableMobile: true
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+x
+
+
+
+

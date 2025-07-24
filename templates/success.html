@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Bronlaringiz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: sans-serif; background: #f3f3f3; padding: 20px; }
+        .booking-card {
+            background: white;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .booking-card h3 { margin: 0; }
+        .btn-cancel {
+            display: inline-block;
+            margin-top: 10px;
+            background: #d32f2f;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+        .btn-cancel:hover {
+            background: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>📅 Sizning bronlaringiz</h2>
+
+    {% if bookings %}
+        {% for booking in bookings %}
+            <div class="booking-card">
+                <h3>{{ booking.date }} - {{ booking.time }}</h3>
+                <p>Ism: {{ booking.name }}<br>
+                   Telefon: {{ booking.phone }}<br>
+                   Izoh: {{ booking.note }}<br>
+                   Holati: {% if booking.is_cancelled %}<span style="color: red;">Bekor qilingan</span>{% else %}<span style="color: green;">Faol</span>{% endif %}
+                </p>
+                {% if not booking.is_cancelled %}
+                    <a href="{% url 'cancel_booking' booking.id %}" class="btn-cancel">Bekor qilish</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Sizda hali hech qanday bron mavjud emas.</p>
+    {% endif %}
+
+</body>
+</html>
