@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'home',
     'price',
     'navigate',
+    'django.contrib.sitemaps',
 ]
 
 
