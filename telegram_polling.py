@@ -8,6 +8,7 @@ import json
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 django.setup()
 
+
 from booking.models import Booking
 from booking.utils import send_telegram  # send_telegram(chat_id, message)
 
