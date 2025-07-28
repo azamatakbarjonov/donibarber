@@ -2,57 +2,32 @@
 <html lang="uz">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lokatsiya | Bizning Joylashuv</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lokatsiya | Blade Barbershop</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'DM Sans', sans-serif;
+        :root {
+            --main-color: #faf8f5;
+            --gold: #d4af37;
+            --black: #0d0d0d;
+            --text: #333;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background: #f9f9f9;
+            box-sizing: border-box;
         }
 
-        .location-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 40px 20px;
-            background: #ffffff;
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--main-color);
+            color: var(--text);
         }
 
-        .location-text {
-            flex: 1 1 400px;
-            padding: 20px;
-        }
-
-        .location-text h2 {
-            font-size: 28px;
-            color: #222;
-            margin-bottom: 15px;
-        }
-
-        .location-text p {
-            font-size: 18px;
-            color: #555;
-            margin: 10px 0;
-        }
-
-        .map-container {
-            flex: 1 1 400px;
-            min-height: 300px;
-            padding: 20px;
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
+        /* === NAVBAR === */
         .main-navbar {
             display: flex;
             justify-content: space-between;
@@ -65,15 +40,15 @@
             z-index: 1000;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
         }
-        
+
         .navbar-brand {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             color: var(--black);
             text-decoration: none;
         }
 
-                .nav-links {
+        .nav-links {
             display: flex;
             gap: 20px;
         }
@@ -93,40 +68,73 @@
             border-color: var(--gold);
         }
 
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
+        /* === LOKATSIYA SECTION === */
+        .location-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 60px 20px;
+            background: #fff;
+        }
 
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                margin-top: 10px;
-            }
+        .location-text {
+            flex: 1 1 400px;
+            padding: 20px;
+        }
 
-            .nav-links.show {
-                display: flex;
-            }
+        .location-text h2 {
+            font-size: 32px;
+            color: var(--black);
+            margin-bottom: 20px;
+        }
 
-            .nav-links a {
-                padding: 10px 0;
-                border-bottom: 1px solid #eee;
-            }
+        .location-text p {
+            font-size: 18px;
+            color: #555;
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+
+        .map-container {
+            flex: 1 1 400px;
+            min-height: 320px;
+            padding: 20px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #f4f4f4;
+            font-size: 14px;
+            color: #777;
         }
 
         @media (max-width: 768px) {
             .location-section {
                 flex-direction: column;
-                padding: 20px 10px;
+                padding: 30px 15px;
             }
 
             .location-text h2 {
-                font-size: 24px;
+                font-size: 26px;
             }
 
             .location-text p {
                 font-size: 16px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
             }
         }
     </style>
@@ -134,31 +142,35 @@
 
 <body>
 
-        <nav class="main-navbar">
+    <!-- NAVBAR -->
+    <nav class="main-navbar">
         <a href="{% url 'home' %}" class="navbar-brand">Blade</a>
-        <div class="nav-links" id="navLinks">
+        <div class="nav-links">
             <a href="{% url 'home' %}">Asosiy</a>
             <a href="{% url 'booking' %}">Bron</a>
-
         </div>
     </nav>
 
+    <!-- LOCATION SECTION -->
     <section class="location-section">
         <div class="location-text">
-            <h2>Bizning Manzil</h2>
-            <p><strong>📍 Manzil:</strong> Chilonzor, 19-kvartal, Toshkent</p>
+            <h2>Bizning Lokatsiya</h2>
+            <p><strong>📍 Manzil:</strong> Akmal Tamo, Chilonzor, Toshkent</p>
             <p><strong>📞 Telefon:</strong> +998 90 123 45 67</p>
-            <p><strong>🕒 Ish vaqti:</strong> Dushanba – Yakshanba, 9:00 - 21:00</p>
+            <p><strong>🕒 Ish vaqti:</strong> Har kuni, 9:00 – 21:00</p>
         </div>
         <div class="map-container">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.445113526264!2d69.2352642!3d41.306044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b00199b4a63%3A0x8e830be85ebe797d!2sAkmal%20Tamo!5e0!3m2!1sru!2s!4v1722150000000&hl=ru"
-                width="100%" height="400" style="border:0; border-radius:12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);"
                 allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
-
         </div>
     </section>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2025 Blade Barbershop. Barcha huquqlar himoyalangan.
+    </footer>
 
 </body>
 
