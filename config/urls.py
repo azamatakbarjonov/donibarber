@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
@@ -10,6 +11,7 @@ urlpatterns = [
     path('booking/', include('booking.urls')),
     path('price/', include('price.urls')),
     path('navigate/', include('navigate.urls')),
+    path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
 
 ]
 
